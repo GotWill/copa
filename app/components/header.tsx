@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { CirclePlus, Volleyball } from "lucide-react";
+import { CirclePlus, Search } from "lucide-react";
 import Image from "next/image";
 
 const Header = () => {
@@ -12,7 +12,7 @@ const Header = () => {
             <CirclePlus />
             Novo bolão
           </Button>
-          <Button className="bg-button-two hover:bg-button-two/75"><Volleyball /> Meus bolões </Button>
+          <Button className="bg-button-two hover:bg-button-two/75"><Search /> BUSCAR BOLÃO </Button>
         </div>
       </div>
     </div>
