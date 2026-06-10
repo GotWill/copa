@@ -45,6 +45,11 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --color-neutral: #121214;
+  --color-button-yellow: #F7DD43;
+  --color-label: #8D8D99;
+  --color-input: #202024;
+  --color-green: #129E57;
 }
 
 body {

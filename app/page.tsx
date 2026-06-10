@@ -1,6 +1,5 @@
 import {
   Avatar,
-  AvatarBadge,
   AvatarFallback,
   AvatarGroup,
   AvatarGroupCount,
@@ -58,14 +57,14 @@ export default function Home() {
                 <Input
                   type="text"
                   placeholder="Nome do seu bolão"
-                  className="md:max-w-[306px] w-full bg-[#202024] border-none font-medium text-white placeholder:text-white py-4 px-6 h-auto"
+                  className="md:max-w-[306px] w-full bg-input border-none font-medium text-white placeholder:text-white py-4 px-6 h-auto"
                 />
-                <Button className="py-4 px-6 h-auto bg-[#F7DD43] text-black font-bold cursor-pointer hover:bg-[#E5C83D] transition-all duration-300">
+                <Button className="py-4 px-6 h-auto bg-button-yellow text-black font-bold cursor-pointer hover:bg-button-yellow/60 transition-all duration-300">
                   CRIAR MEU BOLÃO
                 </Button>
               </div>
               <div className="max-w-[400px] w-full">
-                <p className="text-[#8D8D99] text-sm font-medium">
+                <p className="text-label text-sm font-medium">
                   Após criar seu bolão, você receberá um código único que poderá
                   usar para convidar outras pessoas 🚀
                 </p>
@@ -73,7 +72,7 @@ export default function Home() {
             </div>
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-6">
-                <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-green rounded-full flex items-center justify-center">
                   <Check className="text-white" />
                 </div>
                 <div className="text-white">
@@ -83,7 +82,7 @@ export default function Home() {
               </div>
               <div className="hidden md:block border border-white self-stretch" />
               <div className="flex items-center gap-6">
-                <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-green rounded-full flex items-center justify-center">
                   <Check className="text-white" />
                 </div>
                 <div className="text-white">
@@ -94,7 +93,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hidden md:block relative w-[498px] h-[596px]">
-            <Image src="/phone.png" fill alt="" />
+            <Image src="/phone.png" fill alt=""/>
           </div>
         </div>
       </div>
