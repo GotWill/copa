@@ -59,7 +59,7 @@ export default function Home() {
                   placeholder="Nome do seu bolão"
                   className="md:max-w-[306px] w-full bg-input border-none font-medium text-white placeholder:text-white py-4 px-6 h-auto"
                 />
-                <Button className="py-4 px-6 h-auto bg-button-yellow text-black font-bold cursor-pointer hover:bg-button-yellow/60 transition-all duration-300">
+                <Button>
                   CRIAR MEU BOLÃO
                 </Button>
               </div>
