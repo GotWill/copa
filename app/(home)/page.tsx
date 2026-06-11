@@ -6,9 +6,9 @@ import {
   AvatarGroup,
   AvatarGroupCount,
   AvatarImage,
-} from "../components/ui/avatar";
+} from "../_components/ui/avatar";
 import FormCreatePool from "./components/form";
-import { auth } from "@/lib/auth";
+import { auth } from "@/app/_lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 

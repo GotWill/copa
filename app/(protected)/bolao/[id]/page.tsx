@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { matches } from "@/lib/matches"
+import { matches } from "@/app/_lib/matches"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/app/_lib/utils"
 import { PoolHeader } from "./components/pool-header"
 import { MatchCard } from "./components/match-card"
 import { RankingTable } from "./components/ranking-table"

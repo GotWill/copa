@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Copy } from "lucide-react";
-import { ranking } from "@/lib/matches";
+import { ranking } from "@/app/_lib/matches";
 
 export function PoolHeader() {
   const visible = ranking.slice(0, 4);

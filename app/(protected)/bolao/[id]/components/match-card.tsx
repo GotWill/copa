@@ -2,10 +2,10 @@
 
 import { useState } from "react"
 import { Check, Clock, Lock } from "lucide-react"
-import type { Match } from "@/lib/matches"
-import { cn } from "@/lib/utils"
+import type { Match } from "@/app/_lib/matches"
+import { cn } from "@/app/_lib/utils"
 import { TeamFlag } from "./team-flag"
-import { Button } from "@/app/components/ui/button"
+import { Button } from "@/app/_components/ui/button"
 
 function ScoreInput({
   value,

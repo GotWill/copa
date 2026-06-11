@@ -1,6 +1,6 @@
 import Image from "next/image"
-import { ranking } from "@/lib/matches"
-import { cn } from "@/lib/utils"
+import { ranking } from "@/app/_lib/matches"
+import { cn } from "@/app/_lib/utils"
 
 function PositionPill({ position }: { position: number }) {
   const isTop3 = position <= 3

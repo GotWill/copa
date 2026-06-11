@@ -1,13 +1,13 @@
 "use client";
 
-import { Button } from "@/app/components/ui/button";
-import { Input } from "@/app/components/ui/input";
+import { Button } from "@/app/_components/ui/button";
+import { Input } from "@/app/_components/ui/input";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/app/_lib/auth-client";
 import { createAuthClient } from "better-auth/react";
-import { Field } from "@/app/components/ui/field";
+import { Field } from "@/app/_components/ui/field";
 
 const formSchema = z.object({
   name: z.string().nonempty(),

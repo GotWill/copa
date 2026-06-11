@@ -1,4 +1,4 @@
-import type { Team } from "@/lib/matches"
+import type { Team } from "@/app/_lib/matches"
 
 export function TeamFlag({
   team,
