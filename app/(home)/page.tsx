@@ -11,6 +11,7 @@ import FormCreatePool from "./components/form";
 import { auth } from "@/app/_lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import ButtonSigin from "./components/button-sigin";
 
 export default async function Home() {
   const session = await auth.api.getSession({
@@ -25,13 +26,17 @@ export default async function Home() {
       <div className="max-w-[1124px] mx-auto h-full p-5 md:p-0">
         <div className="flex flex-col md:flex-row items-center justify-between min-h-screen py-10">
           <div className="flex flex-col space-y-15">
-            <Image
-              src="/logo.png"
-              alt="logo"
-              width={100}
-              height={100}
-              className="w-[109px]"
-            />
+            <div className="flex items-center gap-4">
+              <Image
+                src="/logo.png"
+                alt="logo"
+                width={100}
+                height={100}
+                className="w-[109px]"
+              />
+
+              <ButtonSigin />
+            </div>
             <div className="flex flex-col space-y-8 border-b border-[#323238] pb-12">
               <h1 className="text-5xl font-bold text-white max-w-[489px] w-full">
                 Crie seu próprio bolão da copa e compartilhe entre amigos!
