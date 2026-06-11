@@ -1,9 +1,13 @@
-
 import { Check } from "lucide-react";
 import Image from "next/image";
-import { Avatar, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage } from "./components/ui/avatar";
-import { Input } from "./components/ui/input";
-import { Button } from "./components/ui/button";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarGroupCount,
+  AvatarImage,
+} from "../components/ui/avatar";
+import FormCreatePool from "./components/form";
 
 export default function Home() {
   return (
@@ -11,7 +15,7 @@ export default function Home() {
       <div className="max-w-[1124px] mx-auto h-full p-5 md:p-0">
         <div className="flex flex-col md:flex-row items-center justify-between min-h-screen py-10">
           <div className="flex flex-col space-y-15">
-            <Image src="/logo.png" alt="logo" width={100} height={100} />
+            <Image src="/logo.png" alt="logo" width={100} height={100} className="w-[109px]"/>
             <div className="flex flex-col space-y-8 border-b border-[#323238] pb-12">
               <h1 className="text-5xl font-bold text-white max-w-[489px] w-full">
                 Crie seu próprio bolão da copa e compartilhe entre amigos!
@@ -48,16 +52,7 @@ export default function Home() {
                   usando
                 </div>
               </div>
-              <div className="flex flex-col md:flex-row md:items-center gap-2">
-                <Input
-                  type="text"
-                  placeholder="Nome do seu bolão"
-                  className="md:max-w-[306px] w-full bg-input border-none font-medium text-white placeholder:text-white py-4 px-6 h-auto"
-                />
-                <Button>
-                  CRIAR MEU BOLÃO
-                </Button>
-              </div>
+              <FormCreatePool />
               <div className="max-w-[400px] w-full">
                 <p className="text-label text-sm font-medium">
                   Após criar seu bolão, você receberá um código único que poderá
@@ -88,7 +83,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hidden md:block relative w-[498px] h-[596px]">
-            <Image src="/phone.png" fill alt=""/>
+            <Image src="/phone.png" fill alt="" priority sizes="(max-width: 768px) 100vw"/>
           </div>
         </div>
       </div>
