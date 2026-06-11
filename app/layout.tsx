@@ -26,7 +26,7 @@ export default function RootLayout({
       lang="pt-BR"
       className={cn("h-full", "antialiased", roboto.variable, "font-sans", geist.variable)}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-neutral text-white">{children}</body>
     </html>
   );
 }
