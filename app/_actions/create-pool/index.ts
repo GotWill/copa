@@ -1,9 +1,9 @@
 "use server";
 
-import { actionClient } from "@/lib/safe-action";
+import { actionClient } from "@/app/_lib/safe-action";
 import { schema } from "./schema";
-import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
+import { prisma } from "@/app/_lib/prisma";
+import { auth } from "@/app/_lib/auth";
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { customAlphabet } from "nanoid";

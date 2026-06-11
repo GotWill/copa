@@ -3,16 +3,17 @@
 import { useEffect, useState } from "react";
 import { useAction } from "next-safe-action/hooks";
 import { createPool } from "@/app/_actions/create-pool";
+
+import { Check, Copy } from "lucide-react";
 import {
   AlertDialog,
-  AlertDialogDescription,
-  AlertDialogTitle,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogFooter,
   AlertDialogAction,
-} from "@/components/ui/alert-dialog";
-import { Check, Copy } from "lucide-react";
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/app/_components/ui/alert-dialog";
 
 const PoolHandler = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,8 +1,9 @@
-import { CardPool } from "@/app/components/card-pool";
+import { CardPool } from "@/app/_components/card-pool";
 import Link from "next/link";
 import PoolHandler from "./components/pool-handler";
 
-const Home = () => {  return (
+const Home = () => {
+  return (
     <div className="max-w-[1144px] w-full mx-auto pt-6">
       <PoolHandler />
       <div className="flex flex-col gap-3">
