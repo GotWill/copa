@@ -8,14 +8,30 @@ import {
   AvatarImage,
 } from "../components/ui/avatar";
 import FormCreatePool from "./components/form";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (session?.user) {
+    redirect("/dashboard");
+  }
   return (
     <div className="bg-[url(/bg.png)] bg-cover bg-center min-h-screen w-screen">
       <div className="max-w-[1124px] mx-auto h-full p-5 md:p-0">
         <div className="flex flex-col md:flex-row items-center justify-between min-h-screen py-10">
           <div className="flex flex-col space-y-15">
-            <Image src="/logo.png" alt="logo" width={100} height={100} className="w-[109px]"/>
+            <Image
+              src="/logo.png"
+              alt="logo"
+              width={100}
+              height={100}
+              className="w-[109px]"
+            />
             <div className="flex flex-col space-y-8 border-b border-[#323238] pb-12">
               <h1 className="text-5xl font-bold text-white max-w-[489px] w-full">
                 Crie seu próprio bolão da copa e compartilhe entre amigos!
@@ -83,7 +99,13 @@ export default function Home() {
             </div>
           </div>
           <div className="hidden md:block relative w-[498px] h-[596px]">
-            <Image src="/phone.png" fill alt="" priority sizes="(max-width: 768px) 100vw"/>
+            <Image
+              src="/phone.png"
+              fill
+              alt=""
+              priority
+              sizes="(max-width: 768px) 100vw"
+            />
           </div>
         </div>
       </div>
