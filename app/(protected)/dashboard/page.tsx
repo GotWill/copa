@@ -1,7 +1,10 @@
+"use client";
+
 import { CardPool } from "@/app/components/card-pool";
 import Link from "next/link";
 
 const Home = () => {
+ 
   return (
     <div className="max-w-[1144px] w-full mx-auto pt-6">
       <div className="flex flex-col gap-3">

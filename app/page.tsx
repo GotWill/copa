@@ -1,14 +1,9 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarGroup,
-  AvatarGroupCount,
-  AvatarImage,
-} from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+
 import { Check } from "lucide-react";
 import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage } from "./components/ui/avatar";
+import { Input } from "./components/ui/input";
+import { Button } from "./components/ui/button";
 
 export default function Home() {
   return (
