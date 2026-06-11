@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id               String             @id @default(uuid())
+  email            String             @unique
+  name             String
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  pool             Pool[]
+  poolParticipants PoolParticipants[]
+  palpites         Guess[]
+
+  @@map("users")
+}
+
+model Pool {
+  id               String             @id @default(uuid())
+  name             String
+  userId           String
+  user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  poolParticapntes PoolParticipants[]
+  palpites         Guess[]
+
+  @@map("pool")
+}
+
+model PoolParticipants {
+  id        String   @id @default(uuid())
+  poolId    String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pool      Pool     @relation(fields: [poolId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("pool_participants")
+}
+
+model Game {
+  id          String   @id @default(uuid())
+  team1       String
+  team2       String
+  date        String
+  round       String
+  score_team1 Int
+  score_team2 Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  palpites    Guess[]
+
+  @@map("game")
+}
+
+model Guess {
+  id        String   @id @default(uuid())
+  poolId    String
+  userId    String
+  gameId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pool      Pool     @relation(fields: [poolId], references: [id], onDelete: Cascade)
+  game      Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("guess")
+}
