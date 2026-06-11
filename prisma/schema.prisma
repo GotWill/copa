@@ -32,7 +32,7 @@ model Pool {
   user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
-  poolParticapntes PoolParticipants[]
+  poolParticapantes PoolParticipants[]
   palpites         Guess[]
 
   @@map("pool")

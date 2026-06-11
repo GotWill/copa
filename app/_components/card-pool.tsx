@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 interface Participant {
   name: string;
-  avatarUrl?: string;
+  avatarUrl: string | null;
 }
 
 interface BolaoCardProps {
@@ -31,16 +31,15 @@ export function CardPool({
 
       <div className="flex items-center">
         <div className="flex -space-x-3">
-          {visibleParticipants.map((p, i) => (
+          {visibleParticipants.map((participant, i) => (
             <Avatar key={i} className="w-10 h-10 border-2 border-input ring-0">
-              <AvatarImage src={p.avatarUrl} alt={p.name} />
+              <AvatarImage src={participant?.avatarUrl ?? ''} alt={participant.name} />
               <AvatarFallback className="bg-[#323238] text-white text-xs">
-                {p.name.charAt(0)}
+                {participant.name.charAt(0)}
               </AvatarFallback>
             </Avatar>
           ))}
           {extraCount && extraCount > 0 && (
-          
             <Avatar className="w-10 h-10 border-2 border-input">
               <AvatarImage />
               <AvatarFallback className="bg-[#323238] text-white text-xs">
