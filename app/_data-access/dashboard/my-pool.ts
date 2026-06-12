@@ -15,11 +15,12 @@ interface Pool {
     code: string;
     name: string;
     userId: string,
+    userName: string,
     poolParticapantes: Participant[];
   }[];
 }
 
-export const getPool = async (): Promise<Pool | undefined> => {
+export const myGetPool = async (): Promise<Pool | undefined> => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -30,7 +31,18 @@ export const getPool = async (): Promise<Pool | undefined> => {
 
   const pools = await prisma.pool.findMany({
     where: {
-      userId: session?.user.id,
+      OR: [
+        {
+          userId: session?.user.id,
+        },
+        {
+          poolParticapntes: {
+            some: {
+              userId: session?.user.id,
+            },
+          },
+        },
+      ],
     },
     include: {
       poolParticapntes: {
@@ -39,6 +51,11 @@ export const getPool = async (): Promise<Pool | undefined> => {
           id: true,
         },
       },
+      user: {
+        select: {
+          name: true
+        }
+      }
     },
   });
 
@@ -48,6 +65,7 @@ export const getPool = async (): Promise<Pool | undefined> => {
       userId: item.userId,
       id: item.id,
       name: item.name,
+      userName: item.user.name,
       poolParticapantes: item.poolParticapntes.map((item) => ({
         name: item.user.name,
         avatarUrl: item.user.image,

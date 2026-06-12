@@ -1,8 +1,6 @@
-import { Search } from "lucide-react";
 import Image from "next/image";
-import { Button } from "./ui/button";
-
 import { DialogButtonCreatePool } from "../(protected)/dashboard/components/dialog-button";
+import SearchPoolDialog from "../(protected)/dashboard/components/search-pool-dialog";
 
 const Header = () => {
   return (
@@ -11,10 +9,8 @@ const Header = () => {
         <div className="flex justify-between">
           <Image src="/logo-2.png" width={109} height={40} alt="COPA" />
           <div className="flex gap-2">
-            <DialogButtonCreatePool />
-            <Button className="bg-button-two hover:bg-button-two/75">
-              <Search /> BUSCAR BOLÃO{" "}
-            </Button>
+            <DialogButtonCreatePool isButton={true}/>
+            <SearchPoolDialog/>
           </div>
         </div>
       </div>

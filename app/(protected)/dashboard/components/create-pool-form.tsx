@@ -54,7 +54,7 @@ export const CreatePoolForm = ({ onClose }: CreatePoolFormType) => {
               aria-invalid={fieldState.invalid}
               type="text"
               placeholder="Nome do seu bolão"
-              className="w-full bg-input border font-medium text-white placeholder:text-white py-4 px-6 h-auto"
+              className="w-full  bg-input border font-medium text-white placeholder:text-white py-4 px-6 h-auto"
             />
             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
           </Field>
