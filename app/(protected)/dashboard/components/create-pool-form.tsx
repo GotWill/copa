@@ -18,7 +18,7 @@ interface CreatePoolFormType {
   onClose: (code: string) => void;
 }
 
-export const CreatePoolForm =  ({ onClose }: CreatePoolFormType) => {
+export const CreatePoolForm = ({ onClose }: CreatePoolFormType) => {
   type SchemaForm = z.infer<typeof schema>;
 
   const { control, handleSubmit } = useForm<SchemaForm>({
@@ -30,7 +30,7 @@ export const CreatePoolForm =  ({ onClose }: CreatePoolFormType) => {
 
   const { execute, result } = useAction(createPool, {
     onSuccess: () => {
-      onClose(result.data?.code as string)
+      onClose(result.data?.code as string);
     },
     onError: () => {
       toast.error("Error ao precessar essa operação");
@@ -42,27 +42,25 @@ export const CreatePoolForm =  ({ onClose }: CreatePoolFormType) => {
   };
 
   return (
-    <div>
-      <form className="flex flex-col gap-2" onSubmit={handleSubmit(handleForm)}>
-        <Controller
-          name="name"
-          control={control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid}>
-              <Input
-                {...field}
-                id={field.name}
-                aria-invalid={fieldState.invalid}
-                type="text"
-                placeholder="Nome do seu bolão"
-                className="w-full  bg-input border font-medium text-white placeholder:text-white py-4 px-6 h-auto"
-              />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-            </Field>
-          )}
-        />
-        <Button type="submit">CRIAR MEU BOLÃO</Button>
-      </form>
-    </div>
+    <form className="flex flex-col gap-2" onSubmit={handleSubmit(handleForm)}>
+      <Controller
+        name="name"
+        control={control}
+        render={({ field, fieldState }) => (
+          <Field data-invalid={fieldState.invalid}>
+            <Input
+              {...field}
+              id={field.name}
+              aria-invalid={fieldState.invalid}
+              type="text"
+              placeholder="Nome do seu bolão"
+              className="w-full  bg-input border font-medium text-white placeholder:text-white py-4 px-6 h-auto"
+            />
+            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+          </Field>
+        )}
+      />
+      <Button type="submit">CRIAR MEU BOLÃO</Button>
+    </form>
   );
 };

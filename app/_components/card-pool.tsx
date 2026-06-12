@@ -42,20 +42,23 @@ export function CardPool({
 
   const { execute } = useAction(createPoolParticipant, {
     onSuccess: () => {
-    onClose?.();
-    setTimeout(() => {
-      redirect(`bolao/${code}`)
-    }, 200);
+      onClose?.();
+      setTimeout(() => {
+        redirect(`bolao/${code}`);
+      }, 200);
     },
     onError: () => {
       toast.error("Error ao processar essa operação");
     },
   });
 
+  const verifyUserInParticipant = !isButton
+    ? `bolao/${code}`
+    : "#";
 
   return (
     <div className="flex items-center justify-between bg-input border-b-4 border-button-yellow rounded-lg px-6 py-5 w-full">
-      <Link href={`/bolao/${code}`} className="w-full">
+      <Link href={verifyUserInParticipant} className={`${!isButton ? 'cursor-pointer w-full' : 'cursor-default'}`}>
         <div className="flex flex-col gap-1 flex-1">
           <span className="text-white font-bold text-lg leading-tight">
             {title}
@@ -90,7 +93,7 @@ export function CardPool({
               </Avatar>
             )}
           </div>
-          {isButton &&  (
+          {isButton && (
             <Button
               onClick={() => execute({ poolId, userId })}
               variant="outline"

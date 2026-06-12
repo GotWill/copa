@@ -5,6 +5,7 @@ import { prisma } from "@/app/_lib/prisma";
 import { headers } from "next/headers";
 
 interface Participant {
+  id: string;
   name: string;
   avatarUrl: string | null;
 }
@@ -14,8 +15,8 @@ interface Pool {
     id: string;
     code: string;
     name: string;
-    userId: string,
-    userName: string,
+    userId: string;
+    userName: string;
     poolParticapantes: Participant[];
   }[];
 }
@@ -53,9 +54,9 @@ export const myGetPool = async (): Promise<Pool | undefined> => {
       },
       user: {
         select: {
-          name: true
-        }
-      }
+          name: true,
+        },
+      },
     },
   });
 
@@ -67,6 +68,7 @@ export const myGetPool = async (): Promise<Pool | undefined> => {
       name: item.name,
       userName: item.user.name,
       poolParticapantes: item.poolParticapntes.map((item) => ({
+        id: item.user.id,
         name: item.user.name,
         avatarUrl: item.user.image,
       })),
