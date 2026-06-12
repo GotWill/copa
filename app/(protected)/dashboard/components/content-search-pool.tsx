@@ -9,11 +9,13 @@ import { useState } from "react";
 interface ContentSearchPoolType {
   data: PoolDto | undefined;
   userId: string;
+  onClose: () => void
 }
 
 export default function ContentSearchPool({
   data,
   userId,
+  onClose,
 }: ContentSearchPoolType) {
   const [filter, setFilter] = useState("");
 
@@ -44,6 +46,7 @@ export default function ContentSearchPool({
               createdBy={item.userName}
               participants={item.poolParticapantes}
               isButton={true}
+              onClose={onClose}
             />
           ))
         ) : (

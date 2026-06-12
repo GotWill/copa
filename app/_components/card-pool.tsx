@@ -42,15 +42,16 @@ export function CardPool({
 
   const { execute } = useAction(createPoolParticipant, {
     onSuccess: () => {
-      onClose?.();
-      redirect(`bolao/${code}`);
+    onClose?.();
+    setTimeout(() => {
+      redirect(`bolao/${code}`)
+    }, 200);
     },
     onError: () => {
       toast.error("Error ao processar essa operação");
     },
   });
 
-  console.log(participants)
 
   return (
     <div className="flex items-center justify-between bg-input border-b-4 border-button-yellow rounded-lg px-6 py-5 w-full">

@@ -57,6 +57,7 @@ export const allPool = async (): Promise<PoolDto | undefined> => {
         },
       },
     },
+    take: 5
   });
 
   return {

@@ -1,5 +1,4 @@
 import { Toaster } from "@/app/_components/ui/sonner"
-import Header from "../_components/header";
 
 export default function RootLayout({
   children,
@@ -8,8 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className="min-h-full flex flex-col bg-neutral text-white">
-        <Header />
+      <body className="min-h-full bg-neutral text-white">
         {children}
         <Toaster richColors position="top-right"/>
       </body>
