@@ -1,5 +1,6 @@
 "use client";
 import { createPool } from "@/app/_actions/create-pool";
+
 import { Button } from "@/app/_components/ui/button";
 import { Field, FieldError } from "@/app/_components/ui/field";
 import { Input } from "@/app/_components/ui/input";
@@ -14,10 +15,10 @@ const schema = z.object({
 });
 
 interface CreatePoolFormType {
-  onClose: () => void;
+  onClose: (code: string) => void;
 }
 
-export const CreatePoolForm = ({ onClose }: CreatePoolFormType) => {
+export const CreatePoolForm =  ({ onClose }: CreatePoolFormType) => {
   type SchemaForm = z.infer<typeof schema>;
 
   const { control, handleSubmit } = useForm<SchemaForm>({
@@ -27,10 +28,9 @@ export const CreatePoolForm = ({ onClose }: CreatePoolFormType) => {
     },
   });
 
-  const { execute } = useAction(createPool, {
+  const { execute, result } = useAction(createPool, {
     onSuccess: () => {
-      toast.success("Bolão criado com sucesso!");
-      onClose();
+      onClose(result.data?.code as string)
     },
     onError: () => {
       toast.error("Error ao precessar essa operação");
@@ -42,26 +42,27 @@ export const CreatePoolForm = ({ onClose }: CreatePoolFormType) => {
   };
 
   return (
-    <form className="flex flex-col gap-2" onSubmit={handleSubmit(handleForm)}>
-      <Controller
-        name="name"
-        control={control}
-        render={({ field, fieldState }) => (
-          <Field data-invalid={fieldState.invalid}>
-            <Input
-              {...field}
-              id={field.name}
-              aria-invalid={fieldState.invalid}
-              type="text"
-              placeholder="Nome do seu bolão"
-              className="w-full  bg-input border font-medium text-white placeholder:text-white py-4 px-6 h-auto"
-            />
-            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-          </Field>
-        )}
-      />
-      <Button type="submit">CRIAR MEU BOLÃO</Button>
-    </form>
+    <div>
+      <form className="flex flex-col gap-2" onSubmit={handleSubmit(handleForm)}>
+        <Controller
+          name="name"
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <Input
+                {...field}
+                id={field.name}
+                aria-invalid={fieldState.invalid}
+                type="text"
+                placeholder="Nome do seu bolão"
+                className="w-full  bg-input border font-medium text-white placeholder:text-white py-4 px-6 h-auto"
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+        <Button type="submit">CRIAR MEU BOLÃO</Button>
+      </form>
+    </div>
   );
 };
-

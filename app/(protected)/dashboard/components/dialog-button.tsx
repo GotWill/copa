@@ -11,6 +11,7 @@ import {
 import { CirclePlus } from "lucide-react";
 import { CreatePoolForm } from "./create-pool-form";
 import { useState } from "react";
+import AlertDialogCode from "./alert-dialog-code";
 
 interface DialogButtonCreatePoolType {
   isButton?: boolean;
@@ -20,24 +21,45 @@ export const DialogButtonCreatePool = ({
   isButton,
 }: DialogButtonCreatePoolType) => {
   const [open, setIsOpen] = useState(false);
+  const [isDialogCodeOpen, setIsDialogCode] = useState(false);
+  const [code, setIsCode] = useState("");
+
+  const handleCloseModal = (code: string) => {
+    setIsOpen(false);
+    setTimeout(() => setIsDialogCode(true), 150);
+    setIsCode(code);
+  };
+
   return (
-    <Dialog open={open} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        {isButton ? (
-          <Button>
-            <CirclePlus />
-            Novo bolão
-          </Button>
-        ) : (
-          <button className="text-button-yellow font-bold underline cursor-pointer">criar um novo</button>
-        )}
-      </DialogTrigger>
-      <DialogContent className="bg-dialog border-3 border-input">
-        <DialogHeader>
-          <DialogTitle className="text-white">Crie seu novo bolão</DialogTitle>
-        </DialogHeader>
-        <CreatePoolForm onClose={() => setIsOpen(false)} />
-      </DialogContent>
-    </Dialog>
+    <div>
+      <Dialog open={open} onOpenChange={setIsOpen}>
+        <DialogTrigger asChild>
+          {isButton ? (
+            <Button>
+              <CirclePlus />
+              Novo bolão
+            </Button>
+          ) : (
+            <button className="text-button-yellow font-bold underline cursor-pointer">
+              criar um novo
+            </button>
+          )}
+        </DialogTrigger>
+        <DialogContent className="bg-dialog border-3 border-input">
+          <DialogHeader>
+            <DialogTitle className="text-white">
+              Crie seu novo bolão
+            </DialogTitle>
+          </DialogHeader>
+          <CreatePoolForm onClose={handleCloseModal} />
+        </DialogContent>
+      </Dialog>
+
+      <AlertDialogCode
+        code={code}
+        isDialogCodeOpen={isDialogCodeOpen}
+        setIsDialogCode={() => setIsDialogCode(false)}
+      />
+    </div>
   );
 };
