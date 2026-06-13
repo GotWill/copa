@@ -1,11 +1,14 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Check, Clock, Lock } from "lucide-react"
-import type { Match } from "@/app/_lib/matches"
-import { cn } from "@/app/_lib/utils"
-import { TeamFlag } from "./team-flag"
-import { Button } from "@/app/_components/ui/button"
+import { useEffect, useState } from "react";
+import { Check, Clock, Lock } from "lucide-react";
+import { cn } from "@/app/_lib/utils";
+import { Button } from "@/app/_components/ui/button";
+import { OneMatche } from "../page";
+import Image from "next/image";
+import { COUNTRY_CODE } from "@/app/_lib/matches";
+import { isSameHour } from "date-fns";
+import { parseMatchToUTC } from "@/app/_helpers/parse-match-utc";
 
 function ScoreInput({
   value,
@@ -13,20 +16,21 @@ function ScoreInput({
   disabled,
   label,
 }: {
-  value: number
-  onChange: (value: number) => void
-  disabled: boolean
-  label: string
+  value: number | string;
+  onChange: (value: number | undefined) => void;
+  disabled?: boolean;
+  label: string;
 }) {
   return (
     <input
       type="number"
-      min={0}
       inputMode="numeric"
       aria-label={label}
       value={value}
       disabled={disabled}
-      onChange={(e) => onChange(Math.max(0, Number(e.target.value)))}
+      onChange={(e) =>
+        onChange(e.target.value === "" ? undefined : Number(e.target.value))
+      }
       className={cn(
         "h-14 w-14 rounded-md border border-border bg-input text-center text-xl font-semibold text-foreground outline-none transition",
         "focus:border-primary focus:ring-2 focus:ring-primary/40",
@@ -34,16 +38,30 @@ function ScoreInput({
         "[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none text-white",
       )}
     />
-  )
+  );
 }
 
-export function MatchCard({ match }: { match: Match }) {
-  const [home, setHome] = useState(match.homeScore)
-  const [away, setAway] = useState(match.awayScore)
-  const [confirmed, setConfirmed] = useState(false)
+export function MatchCard({ match }: { match: OneMatche }) {
+  const [home, setHome] = useState<number | undefined>(undefined);
+  const [away, setAway] = useState<number | undefined>(undefined);
+  const [confirmed, setConfirmed] = useState(false);
+  const [now, setNow] = useState(new Date());
 
-  const isClosed = match.status === "closed"
-  const isActive = match.status === "active"
+  useEffect(() => {
+    const interval = setInterval(() => setNow(new Date()), 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const matchDate = parseMatchToUTC(match.time, match.date);
+  const isClosed = now.getTime() > matchDate.getTime() + 15 * 60 * 1000;
+
+  const isActive = "active";
+
+  const flagUrlOne = (team: string) =>
+    `https://flagcdn.com/48x36/${COUNTRY_CODE[team]}.png`;
+
+  const flagUrlTwo = (team: string) =>
+    `https://flagcdn.com/48x36/${COUNTRY_CODE[team]}.png`;
 
   return (
     <article
@@ -56,26 +74,36 @@ export function MatchCard({ match }: { match: Match }) {
     >
       <header className="text-center">
         <h3 className="text-base font-semibold">
-          {match.home.name} vs {match.away.name}
+          {match.team1} vs {match.team2}
         </h3>
         <p className="mt-1 text-xs">{match.date}</p>
       </header>
 
       <div className="mt-5 flex items-center justify-center gap-3">
         <ScoreInput
-          value={home}
+          value={home ?? ""}
           onChange={setHome}
           disabled={isClosed}
-          label={`Placar ${match.home.name}`}
+          label={`Placar`}
         />
-        <TeamFlag team={match.home} />
+        <Image
+          src={flagUrlOne(match.team1)}
+          width={32}
+          height={24}
+          alt={match.team1}
+        />
         <span className="px-1 text-sm font-medium">X</span>
-        <TeamFlag team={match.away} align="right" />
+        <Image
+          src={flagUrlTwo(match.team2)}
+          width={32}
+          height={24}
+          alt={match.team2}
+        />
         <ScoreInput
-          value={away}
+          value={away ?? ""}
           onChange={setAway}
           disabled={isClosed}
-          label={`Placar ${match.away.name}`}
+          label={`Placa`}
         />
       </div>
 
@@ -109,5 +137,5 @@ export function MatchCard({ match }: { match: Match }) {
         )}
       </div>
     </article>
-  )
+  );
 }

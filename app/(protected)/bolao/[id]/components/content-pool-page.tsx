@@ -2,12 +2,19 @@
 
 import { useState } from "react";
 import { RankingTable } from "./ranking-table";
-import { matches } from "@/app/_lib/matches";
+// import { matches } from "@/app/_lib/matches";
 import { MatchCard } from "./match-card";
+import { Matches } from "../page";
 
 type Tab = "palpites" | "ranking";
 
-export  function ContentPoolPage() {
+interface ContentPoolPageType {
+  allMatches: Matches;
+}
+
+export function ContentPoolPage({
+  allMatches: { matches },
+}: ContentPoolPageType) {
   const [tab, setTab] = useState<Tab>("palpites");
   return (
     <div>
@@ -41,7 +48,10 @@ export  function ContentPoolPage() {
       {tab === "palpites" ? (
         <section className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
           {matches.map((match) => (
-            <MatchCard key={match.id} match={match} />
+            <MatchCard
+              key={`${match.team1}x${match.team2}-${match.time}`}
+              match={match}
+            />
           ))}
         </section>
       ) : (
