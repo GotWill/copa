@@ -4,31 +4,36 @@ import { Button } from "@/app/_components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/app/_components/ui/dialog";
 import { Search } from "lucide-react";
 import ContentSearchPool from "./content-search-pool";
-import { PoolDto } from "@/app/_data-access/dashboard/all-pool";
 import { useState } from "react";
 
 interface DialogContentPoolSearchType {
   userId: string;
-  data: PoolDto | undefined;
+  isButton?: boolean
 }
 
 export default function DialogContentPoolSearch({
   userId,
+  isButton = true
 }: DialogContentPoolSearchType) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-button-two hover:bg-button-two/75">
-          <Search /> BUSCAR BOLÃO{" "}
-        </Button>
+        {isButton ? (
+            <Button className="bg-button-two hover:bg-button-two/75">
+            <Search /> BUSCAR BOLÃO{" "}
+          </Button>
+          ) : (
+            <button className="text-button-yellow font-bold underline cursor-pointer">
+              buscar um por código
+            </button>
+          )}
       </DialogTrigger>
       <DialogContent className="max-w-3xl! bg-dialog border-3 border-input">
         <DialogHeader>
