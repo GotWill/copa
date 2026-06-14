@@ -20,7 +20,6 @@ interface DialogContentPoolSearchType {
 }
 
 export default function DialogContentPoolSearch({
-  data,
   userId,
 }: DialogContentPoolSearchType) {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,15 +32,13 @@ export default function DialogContentPoolSearch({
       </DialogTrigger>
       <DialogContent className="max-w-3xl! bg-dialog border-3 border-input">
         <DialogHeader>
-          <DialogTitle className="text-white">Buscar bolão</DialogTitle>
-          <DialogDescription className="text-white">
+          <DialogTitle className="text-white">
             Encontre um bolão pelo nome e participe.
-          </DialogDescription>
+          </DialogTitle>
         </DialogHeader>
         <ContentSearchPool
           onClose={() => setIsOpen(false)}
           userId={userId}
-          data={{ pools: data?.pools ?? [] }}
         />
       </DialogContent>
     </Dialog>

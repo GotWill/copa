@@ -1,5 +1,6 @@
+
+
 import { CardPool } from "@/app/_components/card-pool";
-import Link from "next/link";
 import PoolHandler from "./components/pool-handler";
 import { myGetPool } from "@/app/_data-access/dashboard/my-pool";
 import { auth } from "@/app/_lib/auth";
@@ -18,7 +19,6 @@ export default async function Home() {
     <div className="max-w-[1144px] w-full mx-auto pt-6">
       <div className="flex flex-col gap-4">
         <Header />
-
         <PoolHandler />
         <div className="flex flex-col gap-3">
           {data?.pools.length ? (

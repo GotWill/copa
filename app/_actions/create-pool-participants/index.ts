@@ -7,6 +7,7 @@ import { headers } from "next/headers";
 import { prisma } from "@/app/_lib/prisma";
 import { revalidatePath } from "next/cache";
 
+
 export const createPoolParticipant = actionClient
   .inputSchema(schema)
   .action(async ({ parsedInput: { poolId, userId }}) => {

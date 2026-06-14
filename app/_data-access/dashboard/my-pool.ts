@@ -4,7 +4,7 @@ import { auth } from "@/app/_lib/auth";
 import { prisma } from "@/app/_lib/prisma";
 import { headers } from "next/headers";
 
-interface Participant {
+export interface Participant {
   id: string;
   name: string;
   avatarUrl: string | null;
