@@ -31,11 +31,11 @@ export const DialogButtonCreatePool = ({
   };
 
   return (
-    <div>
+    <div className="flex-1  md:flex-none">
       <Dialog open={open} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
           {isButton ? (
-            <Button>
+            <Button className="w-full md:w-fit text-sm">
               <CirclePlus />
               Novo bolão
             </Button>

@@ -13,12 +13,10 @@ import ContentSearchPool from "./content-search-pool";
 import { useState } from "react";
 
 interface DialogContentPoolSearchType {
-  userId: string;
   isButton?: boolean
 }
 
 export default function DialogContentPoolSearch({
-  userId,
   isButton = true
 }: DialogContentPoolSearchType) {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +33,7 @@ export default function DialogContentPoolSearch({
             </button>
           )}
       </DialogTrigger>
-      <DialogContent className="max-w-3xl! bg-dialog border-3 border-input">
+      <DialogContent className="max-w-2xl! bg-dialog border-3 border-input">
         <DialogHeader>
           <DialogTitle className="text-white">
             Encontre um bolão pelo nome e participe.
@@ -43,7 +41,6 @@ export default function DialogContentPoolSearch({
         </DialogHeader>
         <ContentSearchPool
           onClose={() => setIsOpen(false)}
-          userId={userId}
         />
       </DialogContent>
     </Dialog>

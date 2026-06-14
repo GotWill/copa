@@ -13,7 +13,6 @@ import { getPoolByCode } from "@/app/_actions/get-pool";
 import { Loader } from "lucide-react";
 
 interface ContentSearchPoolType {
-  userId: string;
   onClose: () => void;
 }
 
@@ -22,7 +21,6 @@ const schema = z.object({
 });
 
 export default function ContentSearchPool({
-  userId,
   onClose,
 }: ContentSearchPoolType) {
   type Schema = z.infer<typeof schema>;
@@ -78,7 +76,6 @@ export default function ContentSearchPool({
       {result?.data && (
         <CardPool
           poolId={result.data.id}
-          userId={userId}
           code={result.data.code}
           title={result.data.name}
           createdBy={result.data.userName}

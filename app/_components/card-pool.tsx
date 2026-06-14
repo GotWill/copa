@@ -16,7 +16,6 @@ interface Participant {
 }
 
 interface BolaoCardProps {
-  userId: string;
   poolId: string;
   title: string;
   createdBy: string;
@@ -35,7 +34,6 @@ export function CardPool({
   extraCount,
   isButton,
   poolId,
-  userId,
   onClose,
 }: BolaoCardProps) {
   const visibleParticipants = participants.slice(0, 4);
@@ -95,7 +93,7 @@ export function CardPool({
           </div>
           {isButton && (
             <Button
-              onClick={() => execute({ poolId, userId })}
+              onClick={() => execute({ poolId })}
               variant="outline"
               className="bg-green text-white py-2 px-5 border-none cursor-pointer relative z-20"
             >

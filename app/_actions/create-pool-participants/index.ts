@@ -10,7 +10,7 @@ import { revalidatePath } from "next/cache";
 
 export const createPoolParticipant = actionClient
   .inputSchema(schema)
-  .action(async ({ parsedInput: { poolId, userId }}) => {
+  .action(async ({ parsedInput: { poolId }}) => {
     const session = await auth.api.getSession({
       headers: await headers(),
     });
@@ -22,7 +22,7 @@ export const createPoolParticipant = actionClient
     await prisma.poolParticipants.create({
       data: {
         poolId,
-        userId,
+        userId: session.user.id,
       },
     });
 

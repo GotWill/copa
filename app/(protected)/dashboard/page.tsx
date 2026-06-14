@@ -4,7 +4,6 @@ import { myGetPool } from "@/app/_data-access/dashboard/my-pool";
 import { auth } from "@/app/_lib/auth";
 import { headers } from "next/headers";
 import { DialogButtonCreatePool } from "./components/dialog-button";
-import Header from "@/app/_components/header";
 import DialogContentPoolSearch from "./components/dialog-content-pool-search";
 import { redirect } from "next/navigation";
 
@@ -22,14 +21,12 @@ export default async function Home() {
   return (
     <div className="max-w-[1144px] w-full mx-auto pt-6">
       <div className="flex flex-col gap-4">
-        <Header />
         <PoolHandler />
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 px-6 md:px-0">
           {data?.pools.length ? (
             data?.pools.map((item, index) => (
               <CardPool
                 poolId={item.id}
-                userId={item.userId}
                 key={index}
                 code={item.code}
                 title={item.name}
@@ -43,7 +40,6 @@ export default async function Home() {
             <div className="text-center max-w-[400px] mx-auto">
               Você ainda não está participando de nenhum bolão, que tal{" "}
               <DialogContentPoolSearch
-                userId={session.user.id}
                 isButton={false}
               />
               ou <DialogButtonCreatePool isButton={false} />
