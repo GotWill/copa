@@ -1,13 +1,14 @@
-import Image from "next/image"
-import { cn } from "@/app/_lib/utils"
-import { GuessesDto } from "@/app/_data-access/guess/guesses"
+import Image from "next/image";
+import { cn } from "@/app/_lib/utils";
+import { GuessesDto } from "@/app/_data-access/guess/guesses";
+import { authClient } from "@/app/_lib/auth-client";
 
 interface RankingTableType {
-  guesses: GuessesDto[]
+  guesses: GuessesDto[];
 }
 
 function PositionPill({ position }: { position: number }) {
-  const isTop3 = position <= 3
+  const isTop3 = position <= 3;
   return (
     <span
       className={cn(
@@ -19,15 +20,17 @@ function PositionPill({ position }: { position: number }) {
     >
       {position}º
     </span>
-  )
+  );
 }
 
-export function RankingTable({guesses}:RankingTableType) {
+export function RankingTable({ guesses }: RankingTableType) {
+  const { data: session } = authClient.useSession();
+
   return (
     <div className="flex flex-col gap-3">
       {guesses.map((player, index) => {
-        const position = index + 1
-        const isTop3 = position <= 3
+        const position = index + 1;
+        const isTop3 = position <= 3;
         return (
           <div
             key={player.id}
@@ -46,11 +49,11 @@ export function RankingTable({guesses}:RankingTableType) {
             <div className="min-w-0 flex-1">
               <p className="truncate font-semibold">
                 {player.name}
-                {/* {player.isCurrentUser && (
+                {session?.user.id === player.id && (
                   <span className="ml-1.5 text-sm font-normal text-muted-foreground">
                     (você)
                   </span>
-                )} */}
+                )}
               </p>
               <p className="text-sm text-muted-foreground">
                 {player.points} ponto(s)
@@ -58,9 +61,8 @@ export function RankingTable({guesses}:RankingTableType) {
             </div>
             <PositionPill position={position} />
           </div>
-        )
+        );
       })}
     </div>
-  )
-
+  );
 }

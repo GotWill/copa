@@ -84,7 +84,6 @@ export function CardPool({
             ))}
             {extraCount > 0 && (
               <Avatar className="w-10 h-10 border-2 border-input">
-                <AvatarImage />
                 <AvatarFallback className="bg-[#323238] text-white text-xs">
                   +{extraCount}
                 </AvatarFallback>

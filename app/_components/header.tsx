@@ -8,8 +8,6 @@ import { useEffect, useState } from "react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);

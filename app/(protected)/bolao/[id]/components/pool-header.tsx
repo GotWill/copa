@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import { Copy } from "lucide-react";
@@ -10,11 +10,12 @@ interface PoolHeaderType {
 }
 
 export function PoolHeader({ pool }: PoolHeaderType) {
-
   const handleCopyCode = () => {
     navigator.clipboard.writeText(pool.code);
-    toast.success("Código copiado")
-  }
+    toast.success("Código copiado");
+  };
+
+  const extraCount = pool.poolParticapantes.length - 4;
 
   return (
     <header className="flex flex-col gap-4 border-b border-border pb-6 sm:flex-row sm:items-center sm:justify-between">
@@ -26,7 +27,7 @@ export function PoolHeader({ pool }: PoolHeaderType) {
             <span className="font-semibold text-white">{pool.code}</span>
           </span>
           <button
-          onClick={handleCopyCode}
+            onClick={handleCopyCode}
             type="button"
             aria-label="Copiar código do bolão"
             className="rounded p-1 transition hover:bg-muted hover:text-foreground"
@@ -38,7 +39,7 @@ export function PoolHeader({ pool }: PoolHeaderType) {
 
       <div className="flex items-center">
         <div className="flex -space-x-3">
-          {pool.poolParticapantes.map(({id, user}) => (
+          {pool.poolParticapantes.slice(0, 4).map(({ id, user }) => (
             <Image
               key={id}
               src={user.avatarUrl || "/placeholder.svg"}
@@ -49,9 +50,11 @@ export function PoolHeader({ pool }: PoolHeaderType) {
             />
           ))}
         </div>
-        {/* <div className="ml-2 flex size-10 items-center justify-center rounded-full bg-muted text-xs font-semibold text-foreground">
-          +{extra}
-        </div> */}
+        {extraCount > 0 && (
+          <div className="ml-2 flex size-10 items-center justify-center rounded-full bg-muted text-xs font-semibold text-foreground">
+            +{extraCount}
+          </div>
+        )}
       </div>
     </header>
   );

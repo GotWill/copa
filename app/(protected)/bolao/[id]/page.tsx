@@ -26,7 +26,7 @@ export default async function Page(props: PageProps<"/bolao/[id]">) {
   const pool = await getPool(id);
 
   if (!pool) {
-    notFound();
+    redirect("/dashboard")
   }
 
   const games = await getGame(pool.id);
