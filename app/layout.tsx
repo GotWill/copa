@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Roboto, Geist } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import { cn } from "./_lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -24,7 +23,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={cn("h-full", "antialiased", roboto.variable, "font-sans", geist.variable)}
+      className={cn("h-full", "antialiased", roboto.variable, "font-sans")}
     >
       <body className="min-h-full flex flex-col bg-neutral text-white">{children}</body>
     </html>

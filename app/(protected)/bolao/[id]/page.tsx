@@ -1,6 +1,6 @@
 import { getPool } from "@/app/_data-access/bolao/get-pool";
 import { PoolHeader } from "./components/pool-header";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { ContentPoolPage } from "./components/content-pool-page";
 import { addDays, isWithinInterval, parseISO, startOfDay } from "date-fns";
 import { getGame } from "@/app/_data-access/bolao/get-guesses";
@@ -26,7 +26,7 @@ export default async function Page(props: PageProps<"/bolao/[id]">) {
   const pool = await getPool(id);
 
   if (!pool) {
-    redirect("/dashboard");
+    notFound();
   }
 
   const games = await getGame(pool.id);
