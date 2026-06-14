@@ -37,7 +37,7 @@ export const myGetPool = async (): Promise<Pool | undefined> => {
           userId: session?.user.id,
         },
         {
-          poolParticapntes: {
+          poolParticapantes: {
             some: {
               userId: session?.user.id,
             },
@@ -46,7 +46,7 @@ export const myGetPool = async (): Promise<Pool | undefined> => {
       ],
     },
     include: {
-      poolParticapntes: {
+      poolParticapantes: {
         select: {
           user: true,
           id: true,
@@ -67,7 +67,7 @@ export const myGetPool = async (): Promise<Pool | undefined> => {
       id: item.id,
       name: item.name,
       userName: item.user.name,
-      poolParticapantes: item.poolParticapntes.map((item) => ({
+      poolParticapantes: item.poolParticapantes.map((item) => ({
         id: item.user.id,
         name: item.user.name,
         avatarUrl: item.user.image,

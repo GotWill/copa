@@ -1,3 +1,6 @@
+import "server-only";
+
+
 import { prisma } from "@/app/_lib/prisma";
 
 export interface GetPool {
@@ -23,7 +26,7 @@ export const getPool = async (code: string): Promise<GetPool | null> => {
       id: true,
       code: true,
       name: true,
-      poolParticapntes: {
+      poolParticapantes: {
         select: {
           id: true,
           user: {
@@ -46,7 +49,7 @@ export const getPool = async (code: string): Promise<GetPool | null> => {
     id: pool.id,
     code: pool?.code,
     name: pool.name,
-    poolParticapantes: pool.poolParticapntes.map(({ id, user }) => ({
+    poolParticapantes: pool.poolParticapantes.map(({ id, user }) => ({
       id,
       user: {
         id: 'user.id',

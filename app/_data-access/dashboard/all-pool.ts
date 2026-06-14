@@ -37,7 +37,7 @@ export const allPool = async (): Promise<PoolDto | undefined> => {
         userId: session.user.id,
       },
       AND: {
-        poolParticapntes: {
+        poolParticapantes: {
           none: {
             userId: session.user.id
           }
@@ -45,7 +45,7 @@ export const allPool = async (): Promise<PoolDto | undefined> => {
       }
     },
     include: {
-      poolParticapntes: {
+      poolParticapantes: {
         select: {
           user: true,
           id: true,
@@ -67,7 +67,7 @@ export const allPool = async (): Promise<PoolDto | undefined> => {
       id: item.id,
       name: item.name,
       userName: item.user.name,
-      poolParticapantes: item.poolParticapntes.map((item) => ({
+      poolParticapantes: item.poolParticapantes.map((item) => ({
         id: item.user.id,
         name: item.user.name,
         avatarUrl: item.user.image,
