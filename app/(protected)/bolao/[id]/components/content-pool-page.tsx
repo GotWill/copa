@@ -5,19 +5,22 @@ import { RankingTable } from "./ranking-table";
 import { MatchCard } from "./match-card";
 import { Matches } from "../page";
 import { GameDto } from "@/app/_data-access/bolao/get-guesses";
+import { GuessesDto } from "@/app/_data-access/guess/guesses";
 
 type Tab = "palpites" | "ranking";
 
 interface ContentPoolPageType {
   allMatches: Matches;
   games: GameDto;
-  poolId: string
+  poolId: string;
+  guesses: GuessesDto[];
 }
 
 export function ContentPoolPage({
   allMatches: { matches },
   games,
-  poolId
+  poolId,
+  guesses,
 }: ContentPoolPageType) {
   const [tab, setTab] = useState<Tab>("palpites");
   return (
@@ -62,7 +65,7 @@ export function ContentPoolPage({
         </section>
       ) : (
         <section className="mt-8">
-          <RankingTable />
+          <RankingTable  guesses={guesses} />
         </section>
       )}
     </div>

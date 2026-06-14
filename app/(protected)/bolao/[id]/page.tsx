@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { ContentPoolPage } from "./components/content-pool-page";
 import { addDays, isWithinInterval, parseISO, startOfDay } from "date-fns";
 import { getGame } from "@/app/_data-access/bolao/get-guesses";
+import { getGuesses } from "@/app/_data-access/guess/guesses";
 
 export interface OneMatche {
   round: string;
@@ -29,6 +30,7 @@ export default async function Page(props: PageProps<"/bolao/[id]">) {
   }
 
   const games = await getGame(pool.id);
+  const { guesses } = await getGuesses(pool.id);
   const { matches } = (await fetch(
     "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
   ).then((response) => response.json())) as Matches;
@@ -44,8 +46,6 @@ export default async function Page(props: PageProps<"/bolao/[id]">) {
       return new Date(a.date).getTime() - new Date(b.date).getTime();
     });
 
-  // console.log(nextMatches);
-
   return (
     <main>
       <div className="mx-auto w-full max-w-5xl px-6 py-8 lg:py-12">
@@ -54,6 +54,7 @@ export default async function Page(props: PageProps<"/bolao/[id]">) {
           allMatches={{ matches: nextMatches }}
           games={games}
           poolId={pool.id}
+          guesses={guesses}
         />
       </div>
     </main>

@@ -50,6 +50,16 @@ export async function GET(request: Request) {
         item.team2 === game.team2,
     );
 
+    const allGuess = await prisma.guess.findFirst({
+      where: {
+        gameId: game.id,
+      },
+    });
+
+    if (allGuess) {
+      continue;
+    }
+
     if (getGame?.score?.ft) {
       const [score_team1, score_team2] = getGame.score.ft;
       const result = handleResultGame(
@@ -58,16 +68,6 @@ export async function GET(request: Request) {
         score_team1,
         score_team2,
       );
-
-      const allGuess = await prisma.guess.findFirst({
-        where: {
-          gameId: game.id,
-        },
-      });
-
-      if (allGuess) {
-        return new Response("Game id alread here", { status: 200 });
-      }
 
       await prisma.guess.create({
         data: {
