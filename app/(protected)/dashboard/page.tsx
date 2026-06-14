@@ -22,7 +22,7 @@ export default async function Home() {
     <div className="max-w-[1144px] w-full mx-auto pt-6">
       <div className="flex flex-col gap-4">
         <PoolHandler />
-        <div className="flex flex-col gap-3 px-6 md:px-0">
+        <div className="flex flex-col gap-3 px-6 md:px-0 mb-10">
           {data?.pools.length ? (
             data?.pools.map((item, index) => (
               <CardPool

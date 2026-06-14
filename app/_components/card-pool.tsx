@@ -31,18 +31,17 @@ export function CardPool({
   createdBy,
   participants,
   code,
-  extraCount,
   isButton,
   poolId,
   onClose,
 }: BolaoCardProps) {
-  const visibleParticipants = participants.slice(0, 4);
+  const extraCount = participants.length - 4
 
   const { execute } = useAction(createPoolParticipant, {
     onSuccess: () => {
       onClose?.();
       setTimeout(() => {
-        redirect(`bolao/${code}`);
+        redirect(`/bolao/${code}`);
       }, 200);
     },
     onError: () => {
@@ -50,13 +49,14 @@ export function CardPool({
     },
   });
 
-  const verifyUserInParticipant = !isButton
-    ? `bolao/${code}`
-    : "#";
+  const verifyUserInParticipant = !isButton ? `bolao/${code}` : "#";
 
   return (
     <div className="flex items-center justify-between bg-input border-b-4 border-button-yellow rounded-lg px-6 py-5 w-full">
-      <Link href={verifyUserInParticipant} className={`${!isButton ? 'cursor-pointer w-full' : 'cursor-default'}`}>
+      <Link
+        href={verifyUserInParticipant}
+        className={`${!isButton ? "cursor-pointer w-full" : "cursor-default"}`}
+      >
         <div className="flex flex-col gap-1 flex-1">
           <span className="text-white font-bold text-lg leading-tight">
             {title}
@@ -68,7 +68,7 @@ export function CardPool({
       <div className="flex items-center">
         <div className="flex gap-4">
           <div className="flex -space-x-3">
-            {visibleParticipants.map((participant, i) => (
+            {participants.slice(0, 4).map((participant, i) => (
               <Avatar
                 key={i}
                 className="w-10 h-10 border-2 border-input ring-0"
@@ -82,7 +82,7 @@ export function CardPool({
                 </AvatarFallback>
               </Avatar>
             ))}
-            {extraCount && extraCount > 0 && (
+            {extraCount > 0 && (
               <Avatar className="w-10 h-10 border-2 border-input">
                 <AvatarImage />
                 <AvatarFallback className="bg-[#323238] text-white text-xs">
