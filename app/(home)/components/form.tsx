@@ -16,7 +16,11 @@ const formSchema = z.object({
 const FormCreatePool = () => {
   type Schema = z.infer<typeof formSchema>;
 
-  const { handleSubmit, control } = useForm<Schema>({
+  const {
+    handleSubmit,
+    control,
+    formState: { isSubmitting },
+  } = useForm<Schema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -25,8 +29,9 @@ const FormCreatePool = () => {
 
   const sendForm = async ({ name }: Schema) => {
     const { data: session } = await authClient.getSession();
+    await new Promise((resolve) => setTimeout(resolve, 2000))
     if (!session) {
-     sessionStorage.setItem("bolao", name)
+      sessionStorage.setItem("bolao", name);
       const clientAuth = createAuthClient();
       clientAuth.signIn.social({
         provider: "google",
@@ -34,6 +39,7 @@ const FormCreatePool = () => {
       });
     }
   };
+
 
   return (
     <form
@@ -56,7 +62,7 @@ const FormCreatePool = () => {
           </Field>
         )}
       />
-      <Button>CRIAR MEU BOLÃO</Button>
+      <Button disabled={isSubmitting}>CRIAR MEU BOLÃO</Button>
     </form>
   );
 };
