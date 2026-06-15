@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import * as z from "zod";
 
 const schema = z.object({
-  name: z.string().min(3, "Minomo 3 caracteres"),
+  name: z.string().nonempty("Campo obrigatório."),
 });
 
 interface CreatePoolFormType {

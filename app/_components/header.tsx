@@ -19,14 +19,18 @@ const Header = () => {
 
   return (
     <div
-      className={
-        `border-b border-button-two px-6 md:px-0 pb-10 fixed w-full ${isScrolled && 'z-99 bg-input shadow-2xl'}`
-      }
+      className={`border-b border-button-two px-6 md:px-0 pb-10 fixed w-full ${isScrolled && "z-99 bg-input shadow-2xl"}`}
     >
       <div className="max-w-[1144px] w-full mx-auto pt-8">
         <div className="flex flex-col items-center gap-6 md:flex-row md:gap-0 md:justify-between">
           <Link href="/dashboard">
-            <Image src="/logo-2.png" width={109} height={40} alt="COPA" />
+            <Image
+              src="/logo-2.png"
+              width={109}
+              height={40}
+              alt="COPA"
+              loading="eager"
+            />
           </Link>
           <div className="flex gap-2 w-full md:w-fit">
             <DialogButtonCreatePool isButton={true} />

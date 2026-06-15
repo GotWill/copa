@@ -17,7 +17,7 @@ interface ContentSearchPoolType {
 }
 
 const schema = z.object({
-  code: z.string().nonempty("Obrigatorio"),
+  code: z.string().nonempty("Campo obrigatório."),
 });
 
 export default function ContentSearchPool({

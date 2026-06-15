@@ -5,17 +5,7 @@ import { ContentPoolPage } from "./components/content-pool-page";
 import { addDays, isWithinInterval, parseISO, startOfDay } from "date-fns";
 import { getGame } from "@/app/_data-access/bolao/get-guesses";
 import { getGuesses } from "@/app/_data-access/guess/guesses";
-
-export interface OneMatche {
-  round: string;
-  date: string;
-  time: string;
-  team1: string;
-  team2: string;
-  score?: {
-    ft: number[];
-  };
-}
+import { OneMatche } from "@/app/_types";
 
 export interface Matches {
   matches: OneMatche[];
@@ -26,7 +16,7 @@ export default async function Page(props: PageProps<"/bolao/[id]">) {
   const pool = await getPool(id);
 
   if (!pool) {
-    redirect("/dashboard")
+    redirect("/dashboard");
   }
 
   const games = await getGame(pool.id);

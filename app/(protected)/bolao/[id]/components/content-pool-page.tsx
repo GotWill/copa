@@ -4,8 +4,8 @@ import { useState } from "react";
 import { RankingTable } from "./ranking-table";
 import { MatchCard } from "./match-card";
 import { Matches } from "../page";
-import { GameDto } from "@/app/_data-access/bolao/get-guesses";
-import { GuessesDto } from "@/app/_data-access/guess/guesses";
+import { GameDto, GuessesDto } from "@/app/_types";
+
 
 type Tab = "palpites" | "ranking";
 

@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { Copy } from "lucide-react";
-import { GetPool } from "@/app/_data-access/bolao/get-pool";
 import { toast } from "sonner";
+import { GetPoolDto } from "@/app/_types";
 
 interface PoolHeaderType {
-  pool: GetPool;
+  pool: GetPoolDto;
 }
 
 export function PoolHeader({ pool }: PoolHeaderType) {

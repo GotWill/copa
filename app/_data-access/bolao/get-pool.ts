@@ -1,23 +1,9 @@
 import "server-only";
 
-
 import { prisma } from "@/app/_lib/prisma";
+import { GetPoolDto } from "@/app/_types";
 
-export interface GetPool {
-  id: string;
-  code: string;
-  name: string;
-  poolParticapantes: {
-    id: string;
-    user: {
-      id: string;
-      name: string;
-      avatarUrl: string | null;
-    };
-  }[];
-}
-
-export const getPool = async (code: string): Promise<GetPool | null> => {
+export const getPool = async (code: string): Promise<GetPoolDto | null> => {
   const pool = await prisma.pool.findUnique({
     where: {
       code,
@@ -52,7 +38,7 @@ export const getPool = async (code: string): Promise<GetPool | null> => {
     poolParticapantes: pool.poolParticapantes.map(({ id, user }) => ({
       id,
       user: {
-        id: 'user.id',
+        id: "user.id",
         name: user.name,
         avatarUrl: user.image,
       },

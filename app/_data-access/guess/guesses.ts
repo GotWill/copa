@@ -1,12 +1,6 @@
 import { prisma } from "@/app/_lib/prisma";
+import { GuessesDto } from "@/app/_types";
 import { Prisma } from "@/lib/generated/prisma/client";
-
-export interface GuessesDto {
-  id: string;
-  points: number;
-  name: string;
-  image: string | null;
-}
 
 interface PromiseGuesses {
   guesses: GuessesDto[];

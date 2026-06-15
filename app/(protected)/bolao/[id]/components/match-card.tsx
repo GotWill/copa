@@ -4,14 +4,13 @@ import { useEffect, useState } from "react";
 import { Check, Clock, Lock } from "lucide-react";
 import { cn } from "@/app/_lib/utils";
 import { Button } from "@/app/_components/ui/button";
-import { OneMatche } from "../page";
 import Image from "next/image";
 import { COUNTRY_CODE } from "@/app/_lib/matches";
 import { parseMatchToUTC } from "@/app/_helpers/parse-match-utc";
 import { toast } from "sonner";
 import { useAction } from "next-safe-action/hooks";
 import { createGame } from "@/app/_actions/create-game";
-import { GameDto } from "@/app/_data-access/bolao/get-guesses";
+import { GameDto, OneMatche } from "@/app/_types";
 
 function ScoreInput({
   value,

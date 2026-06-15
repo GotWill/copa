@@ -3,9 +3,9 @@
 import { actionClient } from "@/app/_lib/safe-action";
 import { schema } from "./schema";
 import { prisma } from "@/app/_lib/prisma";
-import { Participant } from "@/app/_data-access/dashboard/all-pool";
 import { auth } from "@/app/_lib/auth";
 import { headers } from "next/headers";
+import { Participant } from "@/app/_types";
 
 interface GetPoolByCode {
   id: string;

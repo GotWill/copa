@@ -1,16 +1,7 @@
 "server-only";
 
 import { prisma } from "@/app/_lib/prisma";
-export interface GameDto {
-  games: {
-    id: string;
-    score_team1: number;
-    score_team2: number;
-    team1: string;
-    team2: string;
-    round: string;
-  }[];
-}
+import { GameDto } from "@/app/_types";
 
 export const getGame = async (poolId: string): Promise<GameDto> => {
   const games = await prisma.game.findMany({

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { cn } from "@/app/_lib/utils";
-import { GuessesDto } from "@/app/_data-access/guess/guesses";
 import { authClient } from "@/app/_lib/auth-client";
+import { GuessesDto } from "@/app/_types";
 
 interface RankingTableType {
   guesses: GuessesDto[];

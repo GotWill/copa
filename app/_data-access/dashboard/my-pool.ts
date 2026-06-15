@@ -3,12 +3,9 @@ import "server-only";
 import { auth } from "@/app/_lib/auth";
 import { prisma } from "@/app/_lib/prisma";
 import { headers } from "next/headers";
+import { Participant } from "@/app/_types";
 
-export interface Participant {
-  id: string;
-  name: string;
-  avatarUrl: string | null;
-}
+
 
 interface Pool {
   pools: {
