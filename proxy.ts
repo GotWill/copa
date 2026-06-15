@@ -14,9 +14,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/dashboard",
-    "/bolao/:path*",
-    "/((?!api/cron|_next/static|_next/image|favicon.ico).*)",
-  ],
+  matcher: ["/dashboard", "/bolao/:path*"],
 };
