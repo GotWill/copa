@@ -1,6 +1,6 @@
 import { getPool } from "@/app/_data-access/bolao/get-pool";
 import { PoolHeader } from "./components/pool-header";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { ContentPoolPage } from "./components/content-pool-page";
 import { addDays, isWithinInterval, parseISO, startOfDay } from "date-fns";
 import { getGame } from "@/app/_data-access/bolao/get-guesses";

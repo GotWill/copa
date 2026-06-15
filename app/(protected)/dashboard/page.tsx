@@ -5,7 +5,6 @@ import { auth } from "@/app/_lib/auth";
 import { headers } from "next/headers";
 import { DialogButtonCreatePool } from "./components/dialog-button";
 import DialogContentPoolSearch from "./components/dialog-content-pool-search";
-import { redirect } from "next/navigation";
 
 export default async function Home() {
   const data = await myGetPool();
@@ -13,10 +12,6 @@ export default async function Home() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-
-  if (!session) {
-    redirect("/");
-  }
 
   return (
     <div className="max-w-[1144px] w-full mx-auto pt-6">
@@ -39,9 +34,7 @@ export default async function Home() {
           ) : (
             <div className="text-center max-w-[400px] mx-auto">
               Você ainda não está participando de nenhum bolão, que tal{" "}
-              <DialogContentPoolSearch
-                isButton={false}
-              />
+              <DialogContentPoolSearch isButton={false} />
               ou <DialogButtonCreatePool isButton={false} />
             </div>
           )}

@@ -45,6 +45,9 @@ export const myGetPool = async (): Promise<Pool | undefined> => {
         },
       ],
     },
+    orderBy: {
+      createdAt: 'desc'
+    },
     include: {
       poolParticapantes: {
         select: {

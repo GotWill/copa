@@ -58,7 +58,7 @@ export function CardPool({
         className={`${!isButton ? "cursor-pointer w-full" : "cursor-default"}`}
       >
         <div className="flex flex-col gap-1 flex-1">
-          <span className="text-white font-bold text-lg leading-tight">
+          <span className="text-white font-bold text-base md:text-lg leading-tight">
             {title}
           </span>
           <span className="text-label text-sm">Criado por {createdBy}</span>
