@@ -5,6 +5,7 @@ import { Button } from "@/app/_components/ui/button";
 import { Field, FieldError } from "@/app/_components/ui/field";
 import { Input } from "@/app/_components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader } from "lucide-react";
 import { useAction } from "next-safe-action/hooks";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -28,7 +29,7 @@ export const CreatePoolForm = ({ onClose }: CreatePoolFormType) => {
     },
   });
 
-  const { execute, result } = useAction(createPool, {
+  const { execute, result, isPending } = useAction(createPool, {
     onSuccess: () => {
       onClose(result.data?.code as string);
     },
@@ -60,7 +61,15 @@ export const CreatePoolForm = ({ onClose }: CreatePoolFormType) => {
           </Field>
         )}
       />
-      <Button type="submit">CRIAR MEU BOLÃO</Button>
+      <Button type="submit" className="w-full" disabled={isPending}>
+        {isPending ? (
+          <>
+            <Loader className="animate-spin" />
+          </>
+        ) : (
+          "CRIAR MEU BOLÃO"
+        )}
+      </Button>
     </form>
   );
 };

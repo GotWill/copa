@@ -34,7 +34,7 @@ export default async function Home() {
           ) : (
             <div className="text-center max-w-[400px] mx-auto">
               Você ainda não está participando de nenhum bolão, que tal{" "}
-              <DialogContentPoolSearch isButton={false} />
+              <DialogContentPoolSearch isButton={false} />{" "}
               ou <DialogButtonCreatePool isButton={false} />
             </div>
           )}

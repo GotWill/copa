@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Check, Clock, Lock } from "lucide-react";
+import { Check, Clock, Loader, Lock } from "lucide-react";
 import { cn } from "@/app/_lib/utils";
 import { Button } from "@/app/_components/ui/button";
 import Image from "next/image";
@@ -46,7 +46,7 @@ function ScoreInput({
 export function MatchCard({
   match,
   games: { games },
-  poolId
+  poolId,
 }: {
   match: OneMatche;
   games: GameDto;
@@ -64,15 +64,13 @@ export function MatchCard({
   const matchDate = parseMatchToUTC(match.time, match.date);
   const isClosed = now.getTime() > matchDate.getTime() + 15 * 60 * 1000;
 
-  const isActive = "active";
-
   const flagUrlOne = (team: string) =>
     `https://flagcdn.com/48x36/${COUNTRY_CODE[team]}.png`;
 
   const flagUrlTwo = (team: string) =>
     `https://flagcdn.com/48x36/${COUNTRY_CODE[team]}.png`;
 
-  const { execute } = useAction(createGame, {
+  const { execute, isPending } = useAction(createGame, {
     onSuccess: () => {
       toast.success("Palpite registrado");
     },
@@ -100,7 +98,7 @@ export function MatchCard({
       score_team2: team2,
       team1: match.team1,
       team2: match.team2,
-      poolId
+      poolId,
     });
   };
 
@@ -108,9 +106,6 @@ export function MatchCard({
     <article
       className={cn(
         "flex flex-col rounded-xl border bg-input p-5 transition-colors",
-        isActive
-          ? "border-accent/60 ring-1 ring-accent/30"
-          : "border-border hover:border-border/80",
       )}
     >
       <header className="text-center">
@@ -170,10 +165,13 @@ export function MatchCard({
           <Button
             onClick={handleCreateGame}
             className="h-11 w-full gap-2 bg-green text-white hover:bg-green/65"
+            disabled={isPending}
           >
-            {isActive ? <Clock className="size-4" /> : null}
-            Confirmar palpite
-            <Check className="size-4" />
+            {isPending ? (
+              <Loader className="animate-spin" />
+            ) : (
+              "Confirmar palpite"
+            )}
           </Button>
         )}
       </div>
